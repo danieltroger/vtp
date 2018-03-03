@@ -1,4 +1,6 @@
-<?php include("pwverify.php");
+<?php
+header('Content-Type: text/html; charset=utf-8');
+include("pwverify.php");
 $flc = file_get_contents(".htvtpdata.json");
 if(isset($_REQUEST['raw'])){header("Content-type: text/html");var_dump($flc);exit;}
 if($flc[1] == '\\')
@@ -10,9 +12,9 @@ $flc_d = json_decode($flc,1); ?><!-- based on https://codepen.io/ashblue/pen/mCt
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" />
+  <link rel="stylesheet" type="text/css" href="jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="ubuntu.css" />
   <style>
     body{font-family:ubuntu;}
     @import "compass/css3";
@@ -60,10 +62,10 @@ $flc_d = json_decode($flc,1); ?><!-- based on https://codepen.io/ashblue/pen/mCt
     }
   </style>
   <script src="sha256.min.js"></script>
-  <script src="//code.jquery.com/jquery.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
+  <script src="jquery.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="underscore.js"></script>
 </head>
 <body>
   <div class="container">

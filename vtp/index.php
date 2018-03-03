@@ -1,4 +1,4 @@
-<?php include("pwverify.php"); ?><!DOCTYPE html>
+<?php header('Content-Type: text/html; charset=utf-8'); include("pwverify.php"); ?><!DOCTYPE html>
 <html>
 <head>
   <!--
@@ -16,7 +16,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Vertretungsplan" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="ubuntu.css" />
   <link rel="stylesheet" type="text/css" href="add2home.css" />
   <script src="add2home.js"></script>
   <style>
