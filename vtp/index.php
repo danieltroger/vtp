@@ -143,7 +143,7 @@
         document.getElementById("back").style.display = "none";
         document.getElementById("saveddate").style.display = "none";
         document.getElementById("impressum").style.display = "none";
-        document.body.innerHTML += "<style class='printborders'>td{border-top: 1px dashed #6DA6D1;}</style>";
+        document.body.innerHTML += "<style class='printborders'>td{border-top: 1px dashed #6DA6D1;}th,td{padding-top: 0.1% !important;padding-bottom: 0.1% !important;}#container{overflow: visible !important;}</style>";
       }
       window.onafterprint = function(){
         document.getElementById("back").style.display = "";
