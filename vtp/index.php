@@ -98,6 +98,13 @@
       @media only screen and (min-device-width: 701px)
       {
         tr:hover {background-color: #9F2716;}
+        th,td
+        {
+          padding-left: 1.2%;
+          padding-right: 1.2%;
+          padding-top: 0.25%;
+          padding-bottom: 0.25%;
+        }
       }
       #targetdate
       {
