@@ -136,11 +136,16 @@
         document.getElementById("back").style.display = "none";
         document.getElementById("saveddate").style.display = "none";
         document.getElementById("impressum").style.display = "none";
+        document.body.innerHTML += "<style class='printborders'>td{border-top: 1px dashed #6DA6D1;}</style>";
       }
       window.onafterprint = function(){
         document.getElementById("back").style.display = "";
         document.getElementById("saveddate").style.display = "";
         document.getElementById("impressum").style.display = "";
+        for(var pb = document.getElementsByClassName("printborders"),i = 0; i<pb.length; i++)
+        {
+          pb[i].remove();
+        }
       }
       var positiontable = window.onload = window.onorientationchange = function(e){
         var targetdate = document.getElementById("targetdate"),
