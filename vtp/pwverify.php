@@ -3,7 +3,7 @@ include_once "pwds.php";
 header('P3P: CP=”NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM”'); // https://stackoverflow.com/a/2955720
  // https://www.formget.com/login-form-in-php/
 session_start(); // Starting Session
-$error= ''; // Variable To Store Error Message
+$error = ''; // Variable To Store Error Message
 $jli = false; // workaround for ie8 if domain contains dash to not need session cookies (but you'll have to enter the password every time)
 if (isset($_POST['password']))
 {
@@ -46,6 +46,21 @@ if(strlen($error) > 0 || (!isset($_SESSION['logged_in']) && $jli == false))
   }
   body{font-family: Waldorf;}
   </style>
+  <script>
+  window.onload = function()
+  {
+    var pwfield = document.getElementById("password");
+    if(localStorage.getItem("password") != null && pwfield.value.length < 1)
+    {
+      pwfield.value = localStorage.getItem("password");
+      <?php if($error == ""){echo "document.getElementsByName('submit')[0].click();";} ?>
+    }
+    pwfield.onkeypress = pwfield.onchange = function(e)
+    {
+      localStorage.setItem("password",e.target.value);
+    }
+  };
+  </script>
   </head>
   <body>
   <div id="main">
