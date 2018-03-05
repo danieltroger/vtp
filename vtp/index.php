@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Vertretungsplan" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="ubuntu.css" />
     <link rel="stylesheet" type="text/css" href="add2home.css" />
     <script src="add2home.js"></script>
@@ -34,7 +34,7 @@
         top: 12%;
         bottom: 12%;
         right: 1.8%;
-        overflow-y: scroll;
+        overflow-y: auto;
       }
       #container::-webkit-scrollbar-track
       {
@@ -77,13 +77,15 @@
         width: 100%;
         color: white;
         text-align: left;
+        font-family: Ubuntu;
       }
       th:first-child{border-radius: 20px 0px 0px 0px;}
       th:last-child{border-radius: 0px 20px 0px 0px;}
       th
       {
         background-color: #9F2716;
-        font-size: 15pt;
+        font-weight: bold;
+        text-transform: uppercase;
       }
       tr:nth-child(even){background-color: rgba(255,255,255,0.1);}
       @media only screen and (max-device-width: 700px)
@@ -125,6 +127,7 @@
       {
         position: absolute;
         bottom: 2%;
+        font-size: 2vh;
         left: 2%; right: 0;
       }
     </style>
@@ -139,14 +142,26 @@
         document.getElementById("saveddate").style.display = "";
         document.getElementById("impressum").style.display = "";
       }
-      window.onload = window.onresize = window.orientationchange = function(){
+      var positiontable = window.onload = window.onorientationchange = function(e){
         var targetdate = document.getElementById("targetdate"),
         footer = document.getElementById("footer"),
         cs = document.getElementById("container").style,
         vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0); // https://stackoverflow.com/a/8876069
-        cs.top = ((targetdate.getBoundingClientRect().top*1.3)+targetdate.offsetHeight)+"px";
+        cs.top = (targetdate.getBoundingClientRect().top+targetdate.offsetHeight+(vh*0.02))+"px";
         cs.bottom = (((vh-footer.getBoundingClientRect().bottom)*1.8)+footer.offsetHeight)+"px";
       }
+      window.addEventListener("orientationchange",sctop); // scroll to top when rotating device, useful for mobile safari's fullscreen mode
+      function sctop()
+      {
+        var x = setInterval(function(){scrollTo(0,0);positiontable()},5);
+        setTimeout(function(){clearInterval(x)},1000);
+      }
+      window.addEventListener("load",function(){ // on idevices, scrolling and therefore entering/leaving full screen mode, on mobile safari, triggers resize events
+        if(!(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream)) // https://stackoverflow.com/a/9039885
+        {
+          window.onresize = positiontable;
+        }
+      });
     </script>
   </head>
   <body>
