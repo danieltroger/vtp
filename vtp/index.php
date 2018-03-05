@@ -101,7 +101,6 @@
       {
         top: 2%;
         left: 2%;
-        font-size: 5vh;
         position: absolute;
       }
       #impressum
@@ -127,7 +126,6 @@
         position: absolute;
         bottom: 2%;
         left: 2%; right: 0;
-        font-size: 2vh;
       }
     </style>
     <script>
@@ -140,6 +138,14 @@
         document.getElementById("back").style.display = "";
         document.getElementById("saveddate").style.display = "";
         document.getElementById("impressum").style.display = "";
+      }
+      window.onload = window.onresize = window.orientationchange = function(){
+        var targetdate = document.getElementById("targetdate"),
+        footer = document.getElementById("footer"),
+        cs = document.getElementById("container").style,
+        vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0); // https://stackoverflow.com/a/8876069
+        cs.top = ((targetdate.getBoundingClientRect().top*1.3)+targetdate.offsetHeight)+"px";
+        cs.bottom = (((vh-footer.getBoundingClientRect().bottom)*1.8)+footer.offsetHeight)+"px";
       }
     </script>
   </head>
