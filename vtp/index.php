@@ -1,4 +1,12 @@
-<?php header('Content-Type: text/html; charset=utf-8'); include("pwverify.php"); ?><!DOCTYPE html>
+<?php header('Content-Type: text/html; charset=utf-8');
+include("pwverify.php");
+date_default_timezone_set("Europe/Stockholm");
+function dayotw($lnxstmp)
+{
+  $tage = array("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag");
+  return $tage[date("N",$lnxstmp)-1];
+}
+?><!DOCTYPE html>
 <html>
   <head>
     <!--
@@ -108,7 +116,7 @@
       }
       #targetdate
       {
-        top: 2%;
+        top: 0.5%;
         left: 2%;
         position: absolute;
       }
@@ -159,7 +167,7 @@
         footer = document.getElementById("footer"),
         cs = document.getElementById("container").style,
         vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0); // https://stackoverflow.com/a/8876069
-        cs.top = (targetdate.getBoundingClientRect().top+targetdate.offsetHeight+(vh*0.02))+"px";
+        cs.top = (targetdate.getBoundingClientRect().top+targetdate.offsetHeight+(vh*0.03))+"px";
         cs.bottom = (((vh-footer.getBoundingClientRect().bottom)*1.8)+footer.offsetHeight)+"px";
       }
       window.addEventListener("orientationchange",sctop); // scroll to top when rotating device, useful for mobile safari's fullscreen mode
@@ -178,8 +186,6 @@
   </head>
   <body>
     <?php
-    $tage = array("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag");
-    date_default_timezone_set("Europe/Stockholm");
     $flc = file_get_contents(".htvtpdata.json");
     if($flc[1] == '\\')
     {
@@ -188,7 +194,7 @@
     $flc_d = json_decode($flc,1);
     ?>
     <?php
-    echo "<h1 id='targetdate'>Vertretungsplan " . $flc_d['validdate'] . "</h1>";
+    echo "<h1 id='targetdate'>Vertretungsplan f&uuml;r " . dayotw(strtotime($flc_d['validdate'])) . ", den " . date("j.n.Y",strtotime($flc_d['validdate'])) . "</h1>";
     ?>
     <div id="container">
       <table>
@@ -217,7 +223,7 @@
     </div>
     <div id="footer">
       <?php
-      echo "<span id='saveddate'>Zuletzt geändert am " . $tage[date("N",$flc_d['date'])-1] . " den " . date("d.m.Y \u\m H:i",$flc_d['date']). "</span>";
+      echo "<span id='saveddate'>Zuletzt geändert am " . dayotw($flc_d['date']) . " den " . date("d.m.Y \u\m H:i",$flc_d['date']). "</span>";
       ?>
 
       <br />
