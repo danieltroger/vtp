@@ -125,14 +125,6 @@ function dayotw($lnxstmp)
         position: absolute;
         right: 2%;
       }
-      @font-face
-      {
-        font-family: 'Gender';
-        src: url('gender/gender.eot');
-        src: url("gender/gender.woff") format("woff"),
-          url("gender/gender.ttf") format("truetype"),
-          url("gender/gender.svg#gender") format("svg");
-      }
       #back:hover, #impressum:hover
       {
         text-decoration: underline;
@@ -201,9 +193,8 @@ function dayotw($lnxstmp)
         <tr>
           <th>Klasse</th>
           <th>Stunde</th>
-          <th>Lehrer<span style="font-family: gender;">G</span></th>
           <th>Fach</th>
-          <th>Vertretungslehrer<span style="font-family: gender;">G</span></th>
+          <th>Vertretung</th>
           <th>Info</th>
         </tr>
       <?php

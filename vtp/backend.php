@@ -44,7 +44,14 @@ $flc_d = json_decode($flc,1); ?><!-- based on https://codepen.io/ashblue/pen/mCt
         color: #00f;
       }
     }
-
+    td
+    {
+      border-right: 1px dashed blue;
+    }
+    td:last-child
+    {
+      border-right: none;
+    }
     .table-add {
       color: #070;
       cursor: pointer;
@@ -94,9 +101,8 @@ $flc_d = json_decode($flc,1); ?><!-- based on https://codepen.io/ashblue/pen/mCt
       <tr>
         <th>Klasse</th>
         <th>Stunde</th>
-        <th>Lehrer</th>
         <th>Fach</th>
-        <th>Vertretungslehrer</th>
+        <th>Vertretung</th>
         <th>Info</th>
         <th></th>
         <th></th>
@@ -124,12 +130,11 @@ $flc_d = json_decode($flc,1); ?><!-- based on https://codepen.io/ashblue/pen/mCt
       ?>
       <!-- This is our clonable table line -->
       <tr class="hide">
-        <td contenteditable="true">00</td>
-        <td contenteditable="true">0FS</td>
-        <td contenteditable="true">_NAME_</td>
-        <td contenteditable="true">_FACH_</td>
-        <td contenteditable="true">_VERTRETUNGSLEHRER_</td>
-        <td contenteditable="true">_INFO_</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
         <td>
           <span class="table-remove glyphicon glyphicon-remove"></span>
         </td>

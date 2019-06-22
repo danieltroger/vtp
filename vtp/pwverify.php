@@ -49,6 +49,19 @@ if(strlen($error) > 0 || (!isset($_SESSION['logged_in']) && $jli == false))
   <script>
   window.onload = function()
   {
+    if(localStorage.consent != "true")
+    {
+      if(!confirm("Der Vertretungsplan speichert das Passwort als localStorage auf Ihrem Gerät, damit Sie sich nur einmal anmelden müssen. Ebenso wird eine Sitzungs-ID als Cookie auf Ihrem Computer hinterlegt, damit Sie das Passwort nicht erneut eingeben müssen, falls Sie die Bearbeitungsfunktion nutzen wollen. Wenn Sie nicht damit einverstanden sind, klicken Sie bitte auf abbrechen, um zur Homepage zurückzugelangen. Bei Bestätigung wird der Dialog nie wieder angezeigt."))
+      {
+        localStorage.clear();
+        location = "destroy_session.php";
+        return;
+      }
+      else
+      {
+        localStorage.consent = true;
+      }
+    }
     var pwfield = document.getElementById("password");
     if(localStorage.getItem("password") != null && pwfield.value.length < 1)
     {
