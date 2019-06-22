@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Vertretungsplan
- * Version: 1.8
+ * Version: 2
  * Description: Just an empty plugin to install the vertretungsplan
  * Author: Daniel Troger
  * License: GPLv3
